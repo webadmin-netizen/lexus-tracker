@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Lexus RX Tracker",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Lexus",
+  "start_url": "/",
+  "theme_color": "#0f1115",
+  "description": "Трекер ТО Lexus RX 450h"
+}
