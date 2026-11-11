@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1115"><title>Lexus RX450h — обслуживание</title><style id="css">
+:root{--bg:#0f1115;--card:#181b22;--card2:#1f232c;--line:#2a2f3a;--tx:#e9ecf2;--mut:#8b93a4;--acc:#c9a86a;--ok:#4caf7d;--warn:#e8a33d;--bad:#e5534b;--unk:#6f7c96}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+#app{max-width:560px;margin:0 auto;padding:16px 14px 90px}
+h1{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:4px 0 2px;font-weight:600}
+.sub{color:var(--mut);font-size:13px}
+.hero{background:linear-gradient(160deg,#20242e,#14171d);border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0 14px}
+.odo{font-size:40px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.odo small{font-size:16px;color:var(--mut);font-weight:500;margin-left:4px}
+.row{display:flex;gap:8px;align-items:center}
+.btn{appearance:none;border:0;border-radius:12px;padding:12px 14px;font:inherit;font-weight:600;background:var(--card2);color:var(--tx);cursor:pointer}
+.btn.pri{background:var(--acc);color:#1a1408}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn.danger{background:#3a1c1c;color:#ffb4ae}
+.btn.sm{padding:8px 11px;font-size:13px;border-radius:10px}
+.btn.full{width:100%}
+.alerts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.alert{border-radius:12px;padding:10px 12px;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.alert.bad{background:#3a1c1c;color:#ffcdc9}
+.alert.warn{background:#3a2c14;color:#ffe2b0}
+.sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:18px 2px 8px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:8px}
+.item .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.item .nm{font-weight:600}
+.item .meta{color:var(--mut);font-size:13px;margin-top:3px}
+.pill{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-ok{background:#173326;color:#8fe0b2}.p-warn{background:#3a2c14;color:#ffcf7a}.p-bad{background:#3a1c1c;color:#ff9d96}.p-unk{background:#232a38;color:#aab6cc}
+.bar{height:6px;background:#262b35;border-radius:9px;margin:9px 0 8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px}
+.acts{display:flex;gap:6px;justify-content:flex-end}
+nav{position:fixed;left:0;right:0;bottom:0;background:rgba(15,17,21,.96);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+nav button{flex:1;max-width:186px;background:none;border:0;color:var(--mut);font:inherit;font-size:12px;padding:6px 0;cursor:pointer}
+nav button b{display:block;font-size:19px;line-height:1.2}
+nav button.on{color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 5px}
+input,select,textarea{width:100%;background:#0c0e12;border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:11px;font:inherit;font-size:16px}
+textarea{min-height:90px;font-size:13px;font-family:ui-monospace,monospace}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.modal{background:var(--card);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.modal h2{margin:0 0 6px;font-size:18px}
+.chk{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px}
+.chk input{width:20px;height:20px;flex:none}
+.hist{border-left:2px solid var(--line);padding:2px 0 12px 12px;margin-left:4px;position:relative}
+.hist:before{content:"";position:absolute;left:-6px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.muted{color:var(--mut)}
+.note{font-size:13px;color:var(--mut);margin-top:6px}
+.toast{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);background:#2b3040;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:30;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.stat:last-child{border:0}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-width:60px}
+.seg button.on{background:var(--acc);color:#1a1408}
+</style></head><body><div id="app"></div><script id="state" type="application/json">null</script><script id="appjs">
+(function(){
+var DEF=[
+ {id:'oil',name:'Моторное масло 0W-20 + масляный фильтр',km:10000,mo:12,note:'Lexus допускает интервал больше, но на пробеге 200 тыс. км лучше держать 10 000 км.'},
+ {id:'rot',name:'Перестановка колёс, проверка шин и давления',km:10000,mo:12,note:'Равномерный износ резины; заодно осмотр протектора.'},
+ {id:'cabin',name:'Салонный фильтр',km:15000,mo:12,note:'Чаще, если пыльно или из кондиционера пахнет.'},
+ {id:'hvfan',name:'Чистка воздухозаборника охлаждения гибридной батареи',km:20000,mo:12,note:'Решётка/фильтр у заднего сиденья. Забитый воздухозаборник перегревает высоковольтную батарею, а на таком пробеге это особенно важно.'},
+ {id:'brk',name:'Тормоза: колодки, диски, суппорты (осмотр, чистка, смазка направляющих)',km:20000,mo:12,note:'У гибрида колодки служат долго, но направляющие суппортов закисают.'},
+ {id:'susp',name:'Осмотр подвески, рулевого, пыльников ШРУС',km:20000,mo:12,note:'Сайлентблоки, шаровые, тяги, стойки стабилизатора.'},
+ {id:'air',name:'Воздушный фильтр двигателя',km:40000,mo:36,note:'В пыльных условиях менять чаще.'},
+ {id:'bfl',name:'Тормозная жидкость',km:40000,mo:24,note:'Раз в 2 года, даже при малом пробеге.'},
+ {id:'belt',name:'Осмотр приводного ремня',km:40000,mo:24,note:''},
+ {id:'atf',name:'Масло гибридной трансмиссии (ATF WS)',km:60000,mo:0,note:'Официально залито «на весь срок службы», но мастера советуют менять каждые 60 000 км.'},
+ {id:'rdiff',name:'Масло заднего редуктора / электромотора E-Four',km:60000,mo:0,note:'Не входит в официальный регламент — это рекомендация мастеров.'},
+ {id:'cool',name:'Антифриз двигателя (Toyota SLLC, розовый)',km:80000,mo:48,note:'Первая замена в 160 000 км, дальше каждые 80 000 км.'},
+ {id:'inv',name:'Антифриз инвертора',km:80000,mo:48,note:'Отдельный контур охлаждения инвертора; заодно проверить работу его помпы.'},
+ {id:'plug',name:'Свечи зажигания (иридиевые, 6 шт.)',km:100000,mo:0,note:'В регламенте США — 120 000 миль, на практике обычно меняют каждые 100 000 км.'},
+ {id:'egr',name:'Чистка EGR и дроссельной заслонки',km:100000,mo:0,note:'Слабое место 2GR-FXS: из-за нагара в EGR бывают пропуски зажигания и детонация.'},
+ {id:'wip',name:'Щётки стеклоочистителя',km:0,mo:12,note:''},
+ {id:'b12',name:'Проверка 12V аккумулятора',km:0,mo:12,note:'Служит в среднем ~5 лет. Если он слабый, машина может не перейти в READY.'},
+ {id:'key',name:'Батарейка смарт-ключа',km:0,mo:24,note:''}
+];
+var TODAY=iso(new Date());
+var S=null,tab='home',modal=null,art=null,dl=null,pubT=null,readonly=false;
+
+function iso(d){var z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}
+function pd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function addMo(s,m){var d=pd(s);d.setMonth(d.getMonth()+m);return iso(d)}
+function addDays(s,n){var d=pd(s);d.setDate(d.getDate()+n);return iso(d)}
+function diffDays(a,b){return Math.round((pd(b)-pd(a))/864e5)}
+function n(x){return Math.round(x).toLocaleString('ru-RU')}
+function fd(s){if(!s)return '—';var d=pd(s);return d.toLocaleDateString('ru-RU',{day:'numeric',month:'short',year:'numeric'})}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function uid(){return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+
+function fresh(){return{v:1,updatedAt:0,car:'Lexus RX450h 2018',odo:[{date:TODAY,km:200000}],
+ items:DEF.map(function(d){return{id:d.id,name:d.name,km:d.km,mo:d.mo,note:d.note,lastKm:null,lastDate:null,on:true}}),
+ hist:[],set:{advKm:1000,advDays:14,kmMonth:1500}}}
+
+function load(){
+ var emb=null,loc=null;
+ try{emb=JSON.parse(document.getElementById('state').textContent)}catch(e){}
+ try{loc=JSON.parse(localStorage.getItem('rx450h_state')||'null')}catch(e){}
+ S=emb||loc||fresh();
+ if(emb&&loc&&loc.updatedAt>emb.updatedAt)S=loc;
+}
+function save(msg){
+ S.updatedAt=Date.now();
+ try{localStorage.setItem('rx450h_state',JSON.stringify(S))}catch(e){}
+ render();
+ if(msg)toast(msg);
+ if(art&&!readonly){clearTimeout(pubT);pubT=setTimeout(publish,1200)}
+}
+function buildDoc(){
+ var css=document.getElementById('css').textContent,js=document.getElementById('appjs').textContent;
+ var data=JSON.stringify(S).replace(/</g,'\\u003c');
+ return '<!DOCTYPE html>\n<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1115"><title>Lexus RX450h — обслуживание</title><style id="css">'+css+'</style></head><body><div id="app"></div><script id="state" type="application/json">'+data+'<\/script><script id="appjs">'+js+'<\/script></body></html>';
+}
+function publish(){
+ if(!art)return;
+ art.publish(buildDoc()).catch(function(e){
+  var c=(e&&(e.code||e.message))||'';
+  if(/not_granted|not_writer/.test(c)){readonly=true;toast('Только просмотр: изменения сохранены лишь на этом устройстве')}
+  else if(!/conflict/.test(c)){toast('Не удалось синхронизировать — данные сохранены на устройстве')}
+ });
+}
+
+function curKm(){return S.odo[S.odo.length-1].km}
+function curDate(){return S.odo[S.odo.length-1].date}
+function kmPerDay(){
+ var o=S.odo;if(o.length>=2){var a=o[0],b=o[o.length-1],d=diffDays(a.date,b.date);if(d>=14&&b.km>a.km){
+  var r=null;for(var i=o.length-1;i>=0;i--){if(diffDays(o[i].date,b.date)>=60){r=o[i];break}}
+  if(r&&r.km<b.km)return (b.km-r.km)/diffDays(r.date,b.date);
+  return (b.km-a.km)/d}}
+ return S.set.kmMonth/30.4;
+}
+function autoRate(){var o=S.odo;return o.length>=2&&diffDays(o[0].date,o[o.length-1].date)>=14}
+function estKm(){var k=curKm()+kmPerDay()*Math.max(0,diffDays(curDate(),TODAY));return Math.round(k)}
+
+function calc(it){
+ var r={st:'ok',remKm:null,remDays:null,frac:0,dueKm:null,dueDate:null,est:null};
+ if(it.lastKm==null&&it.lastDate==null){r.st='unk';return r}
+ var ck=estKm(),rate=kmPerDay();
+ if(it.km&&it.lastKm!=null){r.dueKm=it.lastKm+it.km;r.remKm=r.dueKm-ck;r.frac=Math.max(r.frac,(ck-it.lastKm)/it.km)}
+ if(it.mo&&it.lastDate){r.dueDate=addMo(it.lastDate,it.mo);r.remDays=diffDays(TODAY,r.dueDate);r.frac=Math.max(r.frac,diffDays(it.lastDate,TODAY)/diffDays(it.lastDate,r.dueDate))}
+ var e1=r.remKm!=null&&rate>0?addDays(TODAY,Math.round(r.remKm/rate)):null;
+ r.est=e1&&r.dueDate?(e1<r.dueDate?e1:r.dueDate):(e1||r.dueDate);
+ if((r.remKm!=null&&r.remKm<=0)||(r.remDays!=null&&r.remDays<=0))r.st='bad';
+ else if((r.remKm!=null&&r.remKm<=S.set.advKm)||(r.remDays!=null&&r.remDays<=S.set.advDays))r.st='warn';
+ return r;
+}
+var ORD={bad:0,warn:1,unk:2,ok:3};
+function sorted(){return S.items.filter(function(i){return i.on}).map(function(i){return{it:i,c:calc(i)}}).sort(function(a,b){
+ if(ORD[a.c.st]!==ORD[b.c.st])return ORD[a.c.st]-ORD[b.c.st];
+ return (a.c.est||'9999')<(b.c.est||'9999')?-1:1})}
+
+function pill(c){
+ if(c.st==='unk')return '<span class="pill p-unk">нет данных</span>';
+ var t;
+ if(c.remKm!=null&&c.remKm<=0)t='просрочено '+n(-c.remKm)+' км';
+ else if(c.remDays!=null&&c.remDays<=0)t='срок истёк';
+ else if(c.st==='warn'&&c.remDays!=null&&c.remDays<=S.set.advDays&&!(c.remKm!=null&&c.remKm<=S.set.advKm))t=c.remDays+' дн.';
+ else if(c.remKm!=null)t=n(c.remKm)+' км';
+ else t=c.remDays+' дн.';
+ return '<span class="pill p-'+c.st+'">'+t+'</span>';
+}
+function itemHTML(x){
+ var it=x.it,c=x.c,col={ok:'var(--ok)',warn:'var(--warn)',bad:'var(--bad)',unk:'var(--unk)'}[c.st];
+ var iv=[];if(it.km)iv.push('каждые '+n(it.km)+' км');if(it.mo)iv.push(it.mo%12===0?(it.mo/12)+' '+(it.mo===12?'год':'года'):it.mo+' мес.');
+ var meta=c.st==='unk'?'Укажите, когда делали в последний раз · '+iv.join(' / '):
+  'Последний раз: '+(it.lastKm!=null?n(it.lastKm)+' км':'')+(it.lastDate?' · '+fd(it.lastDate):'')+'<br>Следующий: '+(c.dueKm?n(c.dueKm)+' км':'')+(c.dueKm&&c.dueDate?' или ':'')+(c.dueDate?fd(c.dueDate):'')+(c.est&&c.st!=='bad'?' · примерно '+fd(c.est):'');
+ return '<div class="item"><div class="top"><div><div class="nm">'+esc(it.name)+'</div><div class="meta">'+meta+'</div></div>'+pill(c)+'</div>'+
+ (c.st==='unk'?'':'<div class="bar"><i style="width:'+Math.min(100,Math.max(3,c.frac*100))+'%;background:'+col+'"></i></div>')+
+ '<div class="acts"'+(c.st==='unk'?' style="margin-top:9px"':'')+'><button class="btn sm ghost" data-a="edit" data-id="'+it.id+'">Настроить</button><button class="btn sm '+(c.st==='bad'||c.st==='warn'||c.st==='unk'?'pri':'')+'" data-a="done" data-id="'+it.id+'">'+(c.st==='unk'?'Указать':'Сделано')+'</button></div></div>';
+}
+
+function home(){
+ var L=sorted(),bad=L.filter(function(x){return x.c.st==='bad'}),warn=L.filter(function(x){return x.c.st==='warn'}),unk=L.filter(function(x){return x.c.st==='unk'});
+ var ek=estKm(),showEst=TODAY!==curDate()&&ek>curKm();
+ var h='<h1>'+esc(S.car)+'</h1><div class="sub">Сервисная книжка и напоминания</div>';
+ h+='<div class="hero"><div class="sub">Пробег</div><div class="odo">'+n(curKm())+'<small>км</small></div><div class="sub">на '+fd(curDate())+(showEst?' · сегодня примерно '+n(ek)+' км':'')+' · ~'+n(kmPerDay()*30.4)+' км/мес</div><div style="margin-top:12px"><button class="btn pri full" data-a="odo">Обновить пробег</button></div></div>';
+ if(bad.length||warn.length){h+='<div class="alerts">';
+  bad.forEach(function(x){h+='<div class="alert bad">⛔ <div><b>Пора:</b> '+esc(x.it.name)+'</div></div>'});
+  warn.forEach(function(x){h+='<div class="alert warn">🔔 <div><b>Скоро:</b> '+esc(x.it.name)+' — '+(x.c.remKm!=null&&x.c.remKm<=S.set.advKm?'через '+n(x.c.remKm)+' км':'до '+fd(x.c.dueDate))+'</div></div>'});
+  h+='</div>'}
+ if(unk.length&&unk.length===L.length)h+='<div class="card"><b>С чего начать</b><div class="note">Я пока не знаю, что и когда меняли. Отметьте у каждой позиции, на каком пробеге её делали последний раз. Если не помните — нажмите «Сделано» при следующем ТО. Кнопка ниже отметит всё сразу.</div><div style="margin-top:10px"><button class="btn ghost full" data-a="bulk">Отметить несколько работ сразу</button></div></div>';
+ h+='<div class="row" style="justify-content:space-between"><div class="sec">Регламент</div><button class="btn sm ghost" data-a="bulk">+ Записать ТО</button></div>';
+ L.forEach(function(x){h+=itemHTML(x)});
+ var off=S.items.filter(function(i){return !i.on});
+ if(off.length){h+='<div class="sec">Отключено</div>';off.forEach(function(i){h+='<div class="item"><div class="top"><div class="nm muted">'+esc(i.name)+'</div><button class="btn sm ghost" data-a="edit" data-id="'+i.id+'">Вкл.</button></div></div>'})}
+ h+='<button class="btn ghost full" style="margin-top:6px" data-a="add">+ Своя позиция</button>';
+ return h;
+}
+function history(){
+ var h='<h1>История</h1><div class="sub">Все записанные работы</div>';
+ var tot=0;S.hist.forEach(function(r){tot+=+r.cost||0});
+ h+='<div class="card" style="margin-top:12px"><div class="stat"><span>Записей</span><b>'+S.hist.length+'</b></div><div class="stat"><span>Потрачено всего</span><b>'+n(tot)+' €</b></div></div>';
+ if(!S.hist.length)h+='<div class="note">Пока пусто. Нажмите «Сделано» у любой позиции, и запись появится здесь.</div>';
+ S.hist.slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.km-a.km}).forEach(function(r){
+  var names=r.items.map(function(id){var i=S.items.find(function(x){return x.id===id});return i?i.name:'(удалено)'});
+  h+='<div class="hist"><div class="row" style="justify-content:space-between"><b>'+fd(r.date)+' · '+n(r.km)+' км</b><button class="btn sm ghost" data-a="delh" data-id="'+r.id+'">✕</button></div><div class="note" style="color:var(--tx)">'+names.map(esc).join('<br>')+'</div>'+(r.cost?'<div class="note">'+n(r.cost)+' €</div>':'')+(r.note?'<div class="note">'+esc(r.note)+'</div>':'')+'</div>';
+ });
+ h+='<div class="sec">Журнал пробега</div><div class="card">';
+ S.odo.slice().reverse().slice(0,15).forEach(function(o){h+='<div class="stat"><span>'+fd(o.date)+'</span><b>'+n(o.km)+' км</b></div>'});
+ return h+'</div>';
+}
+function seg(name,vals,cur,fmt){return '<div class="seg">'+vals.map(function(v){return '<button class="btn sm'+(v===cur?' on':'')+'" data-a="set" data-k="'+name+'" data-v="'+v+'">'+fmt(v)+'</button>'}).join('')+'</div>'}
+function settings(){
+ var s=S.set,h='<h1>Настройки</h1><div class="sub">Напоминания и данные</div>';
+ h+='<div class="card" style="margin-top:12px"><b>Предупреждать заранее</b><label>За сколько километров</label>'+seg('advKm',[500,1000,1500,2000,3000],s.advKm,function(v){return n(v)})+
+ '<label>За сколько дней (для сроков по времени)</label>'+seg('advDays',[7,14,30,60],s.advDays,function(v){return v+' дн.'})+'</div>';
+ h+='<div class="card"><b>Средний пробег</b><div class="note">'+(autoRate()?'Сейчас считается автоматически по журналу пробега: ~'+n(kmPerDay()*30.4)+' км/мес. Значение ниже используется, пока данных мало.':'Пока данных мало, используется это значение. Обновляйте пробег раз в неделю-две, и приложение начнёт считать само.')+'</div><label>км в месяц</label><input id="kmMonth" type="number" inputmode="numeric" value="'+s.kmMonth+'"><div style="margin-top:8px"><button class="btn sm" data-a="saveKmM">Сохранить</button></div></div>';
+ h+='<div class="card"><b>Напоминания в календаре телефона</b><div class="note">Само по себе приложение не может присылать уведомления, когда оно закрыто. Поэтому можно выгрузить файл .ics: по вашему среднему пробегу приложение посчитает примерную дату каждой работы и поставит напоминание за '+s.advDays+' дн. до неё. Откройте файл на телефоне, и события добавятся в календарь. После обновления пробега файл лучше выгрузить заново.</div><div style="margin-top:10px" class="row"><button class="btn pri" data-a="ics">Скачать .ics</button><button class="btn ghost" data-a="icscopy">Копировать текст</button></div></div>';
+ h+='<div class="card"><b>Название машины</b><input id="carname" value="'+esc(S.car)+'" style="margin-top:8px"><div style="margin-top:8px"><button class="btn sm" data-a="savecar">Сохранить</button></div></div>';
+ h+='<div class="card"><b>Резервная копия</b><div class="note">Скопируйте данные и сохраните их, например, в заметках. Вставьте их сюда, чтобы восстановить.</div><textarea id="bk" placeholder="Вставьте сюда резервную копию…"></textarea><div class="row" style="margin-top:8px"><button class="btn sm" data-a="exp">Копировать данные</button><button class="btn sm ghost" data-a="imp">Восстановить</button></div></div>';
+ h+='<div class="card"><button class="btn danger full" data-a="reset">Сбросить всё</button></div>';
+ h+='<div class="note" style="margin:10px 4px">Интервалы взяты из регламента Lexus и рекомендаций для RX450h (двигатель 2GR-FXS). Позиции, которых нет в официальном регламенте, отмечены в описании. Любой интервал можно изменить через «Настроить».</div>';
+ return h;
+}
+
+function render(){
+ var a=document.getElementById('app');
+ a.innerHTML=(tab==='home'?home():tab==='hist'?history():settings())+
+ '<nav><button data-a="tab" data-t="home" class="'+(tab==='home'?'on':'')+'"><b>🚗</b>Главная</button><button data-a="tab" data-t="hist" class="'+(tab==='hist'?'on':'')+'"><b>📋</b>История</button><button data-a="tab" data-t="set" class="'+(tab==='set'?'on':'')+'"><b>⚙️</b>Настройки</button></nav>'+
+ (modal?'<div class="modal-bg" data-a="close"><div class="modal">'+modal+'</div></div>':'');
+}
+function open(h){modal=h;render();var f=document.querySelector('.modal input');if(f&&f.type!=='checkbox')setTimeout(function(){try{f.focus()}catch(e){}},50)}
+function close(){modal=null;render()}
+function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},2600)}
+function val(id){var e=document.getElementById(id);return e?e.value.trim():''}
+
+function odoModal(){open('<h2>Обновить пробег</h2><div class="note">Последний: '+n(curKm())+' км ('+fd(curDate())+')</div><label>Текущий пробег, км</label><input id="m_km" type="number" inputmode="numeric" value="'+estKm()+'"><label>Дата</label><input id="m_date" type="date" value="'+TODAY+'"><div class="row" style="margin-top:16px"><button class="btn ghost" data-a="close">Отмена</button><button class="btn pri" style="flex:1" data-a="saveodo">Сохранить</button></div>')}
+function doneModal(ids){
+ var h='<h2>Записать ТО</h2><div class="note">Отметьте, что сделали</div><div class="grid2"><div><label>Пробег, км</label><input id="d_km" type="number" inputmode="numeric" value="'+estKm()+'"></div><div><label>Дата</label><input id="d_date" type="date" value="'+TODAY+'"></div></div><label>Что сделано</label>';
+ S.items.filter(function(i){return i.on}).forEach(function(i){h+='<label class="chk" style="color:var(--tx);margin:0"><input type="checkbox" value="'+i.id+'"'+(ids.indexOf(i.id)>=0?' checked':'')+'>'+esc(i.name)+'</label>'});
+ h+='<div class="grid2"><div><label>Стоимость, €</label><input id="d_cost" type="number" inputmode="decimal" placeholder="необязательно"></div><div><label>Где / заметка</label><input id="d_note" placeholder="сервис, запчасти…"></div></div><div class="row" style="margin-top:16px"><button class="btn ghost" data-a="close">Отмена</button><button class="btn pri" style="flex:1" data-a="savedone">Сохранить</button></div>';
+ open(h);
+}
+function editModal(id){
+ var it=id?S.items.find(function(i){return i.id===id}):{id:'',name:'',km:10000,mo:12,note:'',lastKm:null,lastDate:null,on:true};
+ open('<h2>'+(id?'Настроить':'Новая позиция')+'</h2>'+(it.note?'<div class="note">'+esc(it.note)+'</div>':'')+
+ '<label>Название</label><input id="e_name" value="'+esc(it.name)+'"><div class="grid2"><div><label>Интервал, км (0 — нет)</label><input id="e_km" type="number" inputmode="numeric" value="'+(it.km||0)+'"></div><div><label>Интервал, мес. (0 — нет)</label><input id="e_mo" type="number" inputmode="numeric" value="'+(it.mo||0)+'"></div></div>'+
+ '<div class="grid2"><div><label>Последний раз, км</label><input id="e_lkm" type="number" inputmode="numeric" value="'+(it.lastKm==null?'':it.lastKm)+'" placeholder="не знаю"></div><div><label>Последний раз, дата</label><input id="e_ld" type="date" value="'+(it.lastDate||'')+'"></div></div>'+
+ '<label class="chk" style="color:var(--tx);margin-top:8px"><input type="checkbox" id="e_on"'+(it.on?' checked':'')+'>Отслеживать</label>'+
+ '<div class="row" style="margin-top:16px">'+(id?'<button class="btn danger" data-a="delitem" data-id="'+id+'">Удалить</button>':'')+'<button class="btn ghost" data-a="close">Отмена</button><button class="btn pri" style="flex:1" data-a="saveitem" data-id="'+(id||'')+'">Сохранить</button></div>');
+}
+function confirmModal(text,action,id){open('<h2>'+text+'</h2><div class="row" style="margin-top:16px"><button class="btn ghost" style="flex:1" data-a="close">Отмена</button><button class="btn danger" style="flex:1" data-a="'+action+'" data-id="'+(id||'')+'">Да</button></div>')}
+
+function ics(){
+ var L=sorted().filter(function(x){return x.c.st!=='unk'}),stamp=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+ var out=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//rx450h-service//RU','CALSCALE:GREGORIAN','X-WR-CALNAME:'+S.car+' ТО'];
+ L.forEach(function(x){
+  var d=x.c.st==='bad'?TODAY:x.c.est;if(!d)return;var d2=addDays(d,1);
+  var desc=(x.c.dueKm?'При пробеге '+x.c.dueKm+' км. ':'')+(x.c.dueDate?'Срок по времени: '+x.c.dueDate+'. ':'')+'Дата примерная, по среднему пробегу.';
+  out.push('BEGIN:VEVENT','UID:'+x.it.id+'-'+(x.c.dueKm||x.c.dueDate)+'@rx450h','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+d.replace(/-/g,''),'DTEND;VALUE=DATE:'+d2.replace(/-/g,''),
+   'SUMMARY:🔧 '+x.it.name.replace(/[,;]/g,'\\$&'),'DESCRIPTION:'+desc.replace(/[,;]/g,'\\$&'),
+   'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Скоро ТО: '+x.it.name.replace(/[,;]/g,'\\$&'),'TRIGGER:-P'+S.set.advDays+'D','END:VALARM',
+   'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Пора: '+x.it.name.replace(/[,;]/g,'\\$&'),'TRIGGER:PT9H','END:VALARM','END:VEVENT');
+ });
+ out.push('END:VCALENDAR');return out.join('\r\n');
+}
+function copy(t,msg){try{navigator.clipboard.writeText(t).then(function(){toast(msg)},function(){fallbackCopy(t)})}catch(e){fallbackCopy(t)}}
+function fallbackCopy(t){open('<h2>Скопируйте вручную</h2><textarea readonly style="min-height:200px">'+esc(t)+'</textarea><div style="margin-top:12px"><button class="btn full" data-a="close">Готово</button></div>')}
+
+document.addEventListener('click',function(ev){
+ var b=ev.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,id=b.dataset.id;
+ if(a==='close'&&b.classList.contains('modal-bg')&&ev.target!==b)return;
+ if(a==='tab'){tab=b.dataset.t;modal=null;render();scrollTo(0,0)}
+ else if(a==='close')close();
+ else if(a==='odo')odoModal();
+ else if(a==='saveodo'){var km=+val('m_km'),d=val('m_date')||TODAY;if(!km){toast('Введите пробег');return}
+  if(km<curKm()&&d>=curDate()){toast('Пробег меньше прошлого ('+n(curKm())+')');return}
+  S.odo=S.odo.filter(function(o){return o.date!==d});S.odo.push({date:d,km:km});S.odo.sort(function(x,y){return x.date<y.date?-1:x.date>y.date?1:x.km-y.km});modal=null;save('Пробег сохранён')}
+ else if(a==='done')doneModal([id]);
+ else if(a==='bulk')doneModal([]);
+ else if(a==='savedone'){var ids=[].slice.call(document.querySelectorAll('.modal .chk input:checked')).map(function(i){return i.value});
+  var km2=+val('d_km'),d2=val('d_date')||TODAY;if(!ids.length){toast('Отметьте хотя бы одну работу');return}if(!km2){toast('Введите пробег');return}
+  ids.forEach(function(i){var it=S.items.find(function(x){return x.id===i});if(it&&(it.lastKm==null||km2>=it.lastKm)){it.lastKm=km2;it.lastDate=d2}});
+  S.hist.push({id:uid(),date:d2,km:km2,items:ids,cost:+val('d_cost')||0,note:val('d_note')});
+  if(km2>curKm()){S.odo.push({date:d2,km:km2});S.odo.sort(function(x,y){return x.date<y.date?-1:x.date>y.date?1:x.km-y.km})}
+  modal=null;save('Записано')}
+ else if(a==='edit')editModal(id);
+ else if(a==='add')editModal(null);
+ else if(a==='saveitem'){var nm=val('e_name');if(!nm){toast('Введите название');return}
+  var it=id?S.items.find(function(x){return x.id===id}):null;if(!it){it={id:uid(),note:''};S.items.push(it)}
+  it.name=nm;it.km=+val('e_km')||0;it.mo=+val('e_mo')||0;var l=val('e_lkm');it.lastKm=l===''?null:+l;it.lastDate=val('e_ld')||null;it.on=document.getElementById('e_on').checked;
+  if(!it.km&&!it.mo){toast('Нужен интервал в км или месяцах');return}
+  modal=null;save('Сохранено')}
+ else if(a==='delitem')confirmModal('Удалить позицию?','delitemY',id);
+ else if(a==='delitemY'){S.items=S.items.filter(function(x){return x.id!==id});modal=null;save('Удалено')}
+ else if(a==='delh')confirmModal('Удалить запись из истории?','delhY',id);
+ else if(a==='delhY'){S.hist=S.hist.filter(function(x){return x.id!==id});modal=null;save('Удалено')}
+ else if(a==='set'){S.set[b.dataset.k]=+b.dataset.v;save()}
+ else if(a==='saveKmM'){var v=+val('kmMonth');if(v>0){S.set.kmMonth=v;save('Сохранено')}}
+ else if(a==='savecar'){var c=val('carname');if(c){S.car=c;save('Сохранено')}}
+ else if(a==='ics'){var t=ics();if(dl){dl.save({filename:'lexus-rx450h-TO.ics',data:t}).then(function(){toast('Файл сохранён — откройте его, чтобы добавить в календарь')},function(){copy(t,'Скачивание недоступно — текст скопирован')})}else copy(t,'Текст календаря скопирован')}
+ else if(a==='icscopy')copy(ics(),'Скопировано. Сохраните как файл .ics');
+ else if(a==='exp')copy(JSON.stringify(S),'Данные скопированы');
+ else if(a==='imp'){try{var o=JSON.parse(val('bk'));if(!o||!o.items||!o.odo)throw 0;S=o;save('Восстановлено')}catch(e){toast('Это не похоже на резервную копию')}}
+ else if(a==='reset')confirmModal('Сбросить все данные?','resetY');
+ else if(a==='resetY'){S=fresh();modal=null;save('Сброшено')}
+});
+
+load();render();
+if(window.claude&&window.claude.use){
+ window.claude.use('artifact').then(function(x){art=x}).catch(function(){});
+ window.claude.use('downloads').then(function(x){dl=x}).catch(function(){});
+}
+})();
+</script></body></html>
